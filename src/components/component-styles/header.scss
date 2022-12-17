@@ -1,0 +1,31 @@
+.header-container {
+    // background-color: rgb(24, 24, 24);
+    display: flex;
+    justify-content: space-between;
+    color: white;
+
+    .logo-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .logo {
+            height: 50px;
+            padding-top: .75rem;
+        }
+
+        .logo-title{
+            font-size: 1.5rem;
+        }
+    }
+
+    .navigation{
+        display: flex;
+        flex-direction: row;
+
+        p{
+            padding-right: 1rem;
+        }
+
+    }
+}

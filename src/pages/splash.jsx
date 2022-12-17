@@ -9,7 +9,7 @@ const Splash = () => {
 
     return (
         <div className='splash-container'>
-            <img src={Logo} alt='beep' className='logo' />
+            <img src={Logo} alt='logo' className='logo' />
             <div className='title-container' >
                 <div className='title'>WorkIt</div>
                 <div className='sub-title'>A workout tracker and data visualizer</div>
