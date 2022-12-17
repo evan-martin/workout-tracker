@@ -13,7 +13,7 @@ const Splash = () => {
             <div className='title-container' >
                 <div className='title'>WorkIt</div>
                 <div className='sub-title'>A workout tracker and data visualizer</div>
-                <button className='outlined-button'>Enter</button>
+                <button className='outlined-button' onClick={() => navigate('/activities')} >Enter</button>
             </div>
 
         </div>
