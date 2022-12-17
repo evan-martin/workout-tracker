@@ -1,5 +1,12 @@
 .App {
   text-align: center;
+  background-image: url('assets/background.jpg');
+  background-attachment: fixed;
+  background-size: cover;
+  background-position-y: 80%;
+  position: relative;
+  font-family: 'Oxygen', sans-serif;
+  min-height: 100vh;
 }
 
 .App-logo {
