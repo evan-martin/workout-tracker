@@ -23,7 +23,7 @@ function useStrava() {
                 const accessToken = await axios.post(`https://www.strava.com/oauth/token?client_id=${clientID}&client_secret=${clientSecret}&refresh_token=${refreshToken}&grant_type=refresh_token`)
                 const res = await axios.get(`https://www.strava.com/api/v3/athlete/activities?after=${oneYearAgo}&page=1&per_page=200&access_token=${accessToken.data.access_token}`)
                 setIsLoaded(true);
-                setData(res.data);
+                setData(res.data.reverse());
 
             } catch (error) {
                 console.log(error)
