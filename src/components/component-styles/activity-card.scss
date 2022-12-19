@@ -1,0 +1,45 @@
+.activity-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(188, 188, 188, 0.746);
+
+    .title {
+        margin: 0px;
+        font-weight: 700;
+        text-align: left;
+    }
+
+    .location {
+        font-size: 12px;
+        margin-top: 0px;
+        font-weight: 300;
+    }
+
+    .date {
+        margin-top: 0px;
+        font-size: 12px;
+        font-weight: 300;
+        text-align: left;
+    }
+}
+
+.activity-overview {
+    display: flex;
+    flex-direction: row;
+    font-size: 14px;
+    font-weight: 400;
+
+    p {
+        padding-right: 1rem;
+    }
+}
+
+.activity img {
+    width: 350px;
+    border: 1px solid rgba(188, 188, 188, 0.746);
+}
+
+.disabled {
+    filter: grayscale(100%);
+}
