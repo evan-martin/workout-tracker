@@ -7,9 +7,11 @@
     color: white;
 
     .logo {
-        height: 125px;
+        height: 7rem;
         position: absolute;
-        top: 10px;
+        top: 2rem;
+        left: 2rem;
+        filter: invert(100);
     }
 
     .title-container {
@@ -20,7 +22,8 @@
 
 
         .title {
-            font-size: 6rem;
+            font-size: 5rem;
+            font-family: 'Alfa Slab One', cursive;
         }
 
         .sub-title {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import Logo from '../assets/logo.png'
+import Logo from '../assets/gear.svg'
 
 import './component-styles/header.scss'
 
@@ -11,7 +11,7 @@ const Header = () => {
         <div className='header-container'>
             <div className='logo-container'>
                 <img src={Logo} alt='logo' className='logo' />
-                <div className='logo-title'>WorkIt</div>
+                <div className='logo-title'>sendIt</div>
             </div>
             <div className='navigation'>
                 <p>Activities</p>
