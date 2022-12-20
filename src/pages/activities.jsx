@@ -1,28 +1,40 @@
 import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 import Header from '../components/header';
 import Pagination from '../components/pagination';
 import ActivityCard from '../components/activity-card';
 
 import './page-styles/activities.scss'
+import { SearchSharp } from '@mui/icons-material';
 
 const Activites = ({ data }) => {
     let PageSize = 9;
-    const accessToken = process.env.REACT_APP_ACCESS_TOKEN;
 
     const navigate = useNavigate();
     const [currentPage, setCurrentPage] = useState(1);
+    const [searchTerm, setSearchTerm] = useState("");
+
+    const filteredData = data.filter(data =>
+        data.name.toLowerCase().includes(searchTerm)
+    );
 
     const currentPageData = useMemo(() => {
         const firstPageIndex = (currentPage - 1) * PageSize;
         const lastPageIndex = firstPageIndex + PageSize;
-        return data.slice(firstPageIndex, lastPageIndex);
-    }, [currentPage]);
+        return filteredData.slice(firstPageIndex, lastPageIndex);
+    }, [currentPage, filteredData]);
+
+    const handleChange = e => {
+        setSearchTerm(e.target.value);
+      };
 
     return (
         <>
             <Header />
+            <div className="search-box">
+                <button className="btn-search"><SearchSharp/></button>
+                <input type="search" className="input-search" placeholder="Type to Search..." onChange = {handleChange}/>
+            </div>
             <div className='activities-container'>
                 <div className='activity-grid'>
                     {currentPageData.map((activity) => (
@@ -34,7 +46,7 @@ const Activites = ({ data }) => {
             </div>
             <Pagination
                 currentPage={currentPage}
-                totalCount={data.length}
+                totalCount={filteredData.length}
                 pageSize={PageSize}
                 onPageChange={page => setCurrentPage(page)}
             />
