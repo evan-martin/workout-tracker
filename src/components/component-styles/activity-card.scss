@@ -27,11 +27,20 @@
 .activity-overview {
     display: flex;
     flex-direction: row;
+    align-items: center;
     font-size: 14px;
     font-weight: 400;
 
-    p {
-        padding-right: 1rem;
+    .icon-number {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding-left: .1rem;
+
+
+        p {
+            padding: 0 1rem 0 .25rem;
+        }
     }
 }
 

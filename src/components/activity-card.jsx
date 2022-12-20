@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import mapboxgl from 'mapbox-gl';
+import polyline from '@mapbox/polyline';
+import StraightenIcon from '@mui/icons-material/Straighten';
+import SpeedIcon from '@mui/icons-material/Speed';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 import './component-styles/activity-card.scss'
 
 const ActivityCard = ({ activity }) => {
 
     const accessToken = process.env.REACT_APP_ACCESS_TOKEN;
+    const coordinates = polyline.decode(activity.map.summary_polyline);
     const [location, setLocation] = useState([])
 
     useEffect(() => {
@@ -25,13 +31,13 @@ const ActivityCard = ({ activity }) => {
 
     const toTime = (seconds) => {
         let tempSeconds = seconds
-        const hours = Math.floor(tempSeconds/3600)
-        const minutes = Math.floor((tempSeconds %= 3600)/60)
+        const hours = Math.floor(tempSeconds / 3600)
+        const minutes = Math.floor((tempSeconds %= 3600) / 60)
         const formattedSeconds = tempSeconds %= 60
-        if(seconds > 3600){
+        if (seconds > 3600) {
             return hours + 'h ' + minutes + 'm'
-        }else{
-            return minutes + 'm '+ formattedSeconds + 's'
+        } else {
+            return minutes + 'm ' + formattedSeconds + 's'
         }
     }
 
@@ -46,6 +52,17 @@ const ActivityCard = ({ activity }) => {
         );
     }
 
+    for (let i = 0; i < coordinates.length; i++) {
+        coordinates[i] = [
+            coordinates[i][1],
+            coordinates[i][0]
+        ];
+    }
+
+    const bounds = coordinates.reduce(function (bounds, coord) {
+        return bounds.extend(coord);
+    }, new mapboxgl.LngLatBounds(coordinates[0], coordinates[0]));
+
     return (
         <>
             <div className='activity-title'>
@@ -59,17 +76,24 @@ const ActivityCard = ({ activity }) => {
             </div>
             <div className='activity-overview'>
                 {activity.distance > 0 &&
-                    <p> {(activity.distance / 1609.34).toFixed(2)} mi</p>}
+                    <div className='icon-number'>
+                        <StraightenIcon />
+                        <p> {(activity.distance / 1609.34).toFixed(2)} mi</p>
+                    </div>}
                 {activity.average_speed > 0 &&
-                    <p> {(activity.average_speed * 2.237).toFixed(1)} mph</p>}
-                <p> {toTime(activity.moving_time)}</p>
+                    <div className='icon-number'>
+                        <SpeedIcon />
+                        <p> {(activity.average_speed * 2.237).toFixed(1)} mph</p>
+                    </div>}
+                <div className='icon-number'>
+                    <AccessTimeIcon />
+                    <p>{toTime(activity.moving_time)}</p>
+                </div>
             </div>
             {activity.map.summary_polyline !== "" &&
-                <img src={`https://api.mapbox.com/styles/v1/mapbox/outdoors-v11/static/path-5+501078-0.8(${encodeURIComponent(activity.map.summary_polyline)})/auto/300x150@2x?access_token=${accessToken}`} alt={activity.name} />}
+                <img src={`https://api.mapbox.com/styles/v1/mapbox/outdoors-v11/static/path-5+501078-0.8(${encodeURIComponent(activity.map.summary_polyline)})/[${bounds._sw.lng},${bounds._sw.lat},${bounds._ne.lng},${bounds._ne.lat}]/300x150@2x?padding=30&access_token=${accessToken}`} alt={activity.name} />}
             {activity.map.summary_polyline === "" &&
-                <img className='disabled' src={`https://api.mapbox.com/styles/v1/mapbox/navigation-day-v1/static/-123.79550808529598,48.051579742235845,5/300x150@2x?access_token=${accessToken}`} alt={activity.name} />}
-
-
+                <img className='disabled' src={`https://api.mapbox.com/styles/v1/mapbox/outdoors-v11/static/-122.79550808529598,48.051579742235845,4/300x150@2x?access_token=${accessToken}`} alt={activity.name} />}
         </>
     )
 }
