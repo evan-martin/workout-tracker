@@ -7,7 +7,7 @@ import ActivityCard from '../components/activity-card';
 import './page-styles/activities.scss'
 import { SearchSharp } from '@mui/icons-material';
 
-const Activites = ({ data }) => {
+const Activites = ({ data, setActivity }) => {
     let PageSize = 9;
 
     const navigate = useNavigate();
@@ -26,19 +26,24 @@ const Activites = ({ data }) => {
 
     const handleChange = e => {
         setSearchTerm(e.target.value);
-      };
+    };
+
+    const handleClick = (activity) => {
+        setActivity(activity);
+        navigate(`${activity.id}`)
+    }
 
     return (
         <>
             <Header />
             <div className="search-box">
-                <button className="btn-search"><SearchSharp/></button>
-                <input type="search" className="input-search" placeholder="Type to Search..." onChange = {handleChange}/>
+                <button className="btn-search"><SearchSharp /></button>
+                <input type="search" className="input-search" placeholder="Type to Search..." onChange={handleChange} />
             </div>
             <div className='activities-container'>
                 <div className='activity-grid'>
                     {currentPageData.map((activity) => (
-                        <div key={activity.id} className='activity'>
+                        <div key={activity.id} className='activity' onClick={() => { handleClick(activity) }}>
                             <ActivityCard activity={activity} />
                         </div>
                     ))}
