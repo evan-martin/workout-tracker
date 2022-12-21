@@ -5,7 +5,7 @@
 }
 
 .activity-detail-card{
-    max-width: 1200px;
+    width: 1200px;
     min-height: 100vh;
     background-color: rgb(245, 245, 245);
     border-radius: .25rem;
@@ -27,6 +27,11 @@
         h3{
             padding-left: 1rem;
         }
+    }
+
+    #map-container{
+        height: 400px;
+       
     }
 
     .chart-container{

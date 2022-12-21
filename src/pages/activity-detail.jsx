@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import { useStream } from '../hooks/useStreams';
 import Header from "../components/header"
+import Map from '../components/map';
 import LineChart from '../components/line-chart';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
@@ -19,6 +20,10 @@ const ActivityDetail = ({ activity }) => {
                     <div className='title'>
                         <ArrowBackIcon onClick={() => navigate('/activities')} />
                         <h3>{activity.name}</h3>
+                    </div>
+                    <div className='map-container'>
+                        {activity.map.summary_polyline !== "" &&
+                            <Map activity={activity} />}
                     </div>
                     <div className='chart-container'>
                         <LineChart category={distance} data={elevation} name={"Elevation"} xaxis={"Distance"} yaxis={"Feet"} isLoaded={isLoaded} />
