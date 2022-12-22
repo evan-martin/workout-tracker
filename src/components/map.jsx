@@ -39,7 +39,7 @@ const Map = ({ activity }) => {
         if (map.current) return; // initialize map only once
         map.current = new mapboxgl.Map({
             container: document.getElementById('map-container'),
-            style: 'mapbox://styles/mapbox/light-v11',
+            style: 'mapbox://styles/mapbox/outdoors-v11',
             center: [lng, lat],
             zoom: zoom,
             cooperativeGestures: true
@@ -54,7 +54,7 @@ const Map = ({ activity }) => {
                 "type": "line",
                 "source": "route",
                 "paint": {
-                    "line-color": "#5d62b5",
+                    "line-color": "#373dad",
                     "line-opacity": 1,
                     "line-width": 5
                 }
