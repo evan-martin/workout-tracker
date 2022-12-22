@@ -12,12 +12,24 @@
     margin: .25rem;
     border-radius: .5rem;
     width: 15rem;
-    // background-color: rgb(214, 214, 214);
+    // background-color: rgb(37, 37, 37);
+    // color:white;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    border: 1px solid rgba(188, 188, 188, 0.746);
+    border: 1px solid #bcbcbcbe;
+
+    .icon{
+        background-color: #373dad;
+        color: white;
+        border-radius: 50%;
+        width: 4rem;
+        height: 4rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
    div p {
         margin: 0px;
@@ -26,4 +38,5 @@
     div h2 {
         margin: 0px;
     }
+
 }
