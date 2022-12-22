@@ -27,7 +27,8 @@ const LineChart = ({category, data, name, xaxis, yaxis, isLoaded  }) => {
                 "toolTipBgAlpha": "80",
                 "toolTipBorderRadius": "2",
                 "toolTipPadding": "5",
-                "theme": "fusion"
+                "theme": "fusion",
+                "palettecolors": "5d62b5"
             },
             "categories": [{
                 "category": category

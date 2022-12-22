@@ -54,8 +54,8 @@ const Map = ({ activity }) => {
                 "type": "line",
                 "source": "route",
                 "paint": {
-                    "line-color": "purple",
-                    "line-opacity": 0.75,
+                    "line-color": "#5d62b5",
+                    "line-opacity": 1,
                     "line-width": 5
                 }
             });

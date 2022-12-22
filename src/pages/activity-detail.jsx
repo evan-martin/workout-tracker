@@ -3,6 +3,7 @@ import { useStream } from '../hooks/useStreams';
 import Header from "../components/header"
 import Map from '../components/map';
 import LineChart from '../components/line-chart';
+import ActivityStats from '../components/activity-stats';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 import './page-styles/activity-detail.scss'
@@ -11,6 +12,8 @@ const ActivityDetail = ({ activity }) => {
 
     const navigate = useNavigate();
     const { elevation, distance, heartrate, velocity, isLoaded } = useStream(activity.id)
+
+    console.log(distance)
 
     return (
         <>
@@ -21,6 +24,7 @@ const ActivityDetail = ({ activity }) => {
                         <ArrowBackIcon onClick={() => navigate('/activities')} />
                         <h3>{activity.name}</h3>
                     </div>
+                    <ActivityStats activity={activity} />
                     <div className='map-container'>
                         {activity.map.summary_polyline !== "" &&
                             <Map activity={activity} />}

@@ -91,7 +91,7 @@ const ActivityCard = ({ activity }) => {
                 </div>
             </div>
             {activity.map.summary_polyline !== "" &&
-                <img src={`https://api.mapbox.com/styles/v1/mapbox/light-v10/static/path-5+501078-0.8(${encodeURIComponent(activity.map.summary_polyline)})/[${bounds._sw.lng},${bounds._sw.lat},${bounds._ne.lng},${bounds._ne.lat}]/300x150@2x?padding=30&access_token=${accessToken}`} alt={activity.name} />}
+                <img src={`https://api.mapbox.com/styles/v1/mapbox/light-v10/static/path-5+5d62b5-1(${encodeURIComponent(activity.map.summary_polyline)})/[${bounds._sw.lng},${bounds._sw.lat},${bounds._ne.lng},${bounds._ne.lat}]/300x150@2x?padding=30&access_token=${accessToken}`} alt={activity.name} />}
             {activity.map.summary_polyline === "" &&
                 <img className='disabled' src={`https://api.mapbox.com/styles/v1/mapbox/outdoors-v11/static/-122.79550808529598,48.051579742235845,4/300x150@2x?access_token=${accessToken}`} alt={activity.name} />}
         </>
