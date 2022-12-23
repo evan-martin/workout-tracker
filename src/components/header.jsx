@@ -14,8 +14,8 @@ const Header = () => {
                 <div className='logo-title'>sendIt</div>
             </div>
             <div className='navigation'>
-                <p>Activities</p>
-                <p>Overview</p>
+                <p onClick={() => navigate('/activities')}>Activities</p>
+                <p onClick={() => navigate('/overview')}>Overview</p>
             </div>
         </div>
     );
