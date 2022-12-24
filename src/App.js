@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Route, Routes } from 'react-router';
 import { useStrava } from './hooks/useStrava';
+import { useUserData } from './hooks/useUserData';
 import Splash from './pages/splash';
 import Activites from './pages/activities';
 import ActivityDetail from './pages/activity-detail';
@@ -14,6 +15,8 @@ function App() {
     formattedMonths, monthlyDistance, monthlyTime, monthlyElevation,
     formattedWeeks, weeklyDistance, weeklyTime, weeklyElevation
   } = useStrava();
+
+  const { userData } = useUserData();
 
   const [activity, setActivity] = useState([]);
 
@@ -31,6 +34,7 @@ function App() {
           <Route path="/activities/:id" element={<ActivityDetail activity={activity} />} />
           <Route path="/overview" element={
             <Overview
+              userData={userData}
               formattedMonths={formattedMonths} monthlyDistance={monthlyDistance} monthlyTime={monthlyTime} monthlyElevation={monthlyElevation}
               formattedWeeks={formattedWeeks} weeklyDistance={weeklyDistance} weeklyTime={weeklyTime} weeklyElevation={weeklyElevation}
             />}

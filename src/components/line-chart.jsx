@@ -9,8 +9,8 @@ const LineChart = ({category, data, name, xaxis, yaxis, isLoaded  }) => {
 
     const chartConfigs = ({
         type: 'mscombi2d',// The chart type
-        // width: '700', // Width of the chart
-        // height: '400', // Height of the chart
+        width: '700', // Width of the chart
+        height: '400', // Height of the chart
         dataFormat: 'json', // Data type
         dataSource: {
             "chart": {
