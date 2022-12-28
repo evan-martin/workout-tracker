@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { useStream } from '../hooks/useStreams';
 import Header from "../components/header"
 import Map from '../components/map';
-import LineChart from '../components/line-chart';
+import ActivityDetailCharts from '../components/activity-detail-charts';
 import ActivityStats from '../components/activity-stats';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
@@ -11,9 +11,7 @@ import './page-styles/activity-detail.scss'
 const ActivityDetail = ({ activity }) => {
 
     const navigate = useNavigate();
-    const { elevation, distance, heartrate, velocity, isLoaded } = useStream(activity.id)
-
-    console.log(distance)
+    const { streamData, isLoaded } = useStream(activity.id)
 
     return (
         <>
@@ -29,11 +27,12 @@ const ActivityDetail = ({ activity }) => {
                         {activity.map.summary_polyline !== "" &&
                             <Map activity={activity} />}
                     </div>
-                    <div className='chart-container'>
+                    <ActivityDetailCharts streamData = {streamData} isLoaded={isLoaded} />
+                    {/* <div className='chart-container'>
                         <LineChart category={distance} data={elevation} name={"Elevation"} xaxis={"Distance"} yaxis={"Feet"} isLoaded={isLoaded} />
                         <LineChart category={distance} data={heartrate} name={"Heartrate"} xaxis={"Distance"} yaxis={"BPM"} isLoaded={isLoaded} />
-                        <LineChart category={distance} data={velocity} name={"Speed"} xaxis={"Distance"} yaxis={"MPH"} isLoaded={isLoaded} />
-                    </div>
+                        <LineChart category={distance} data={velocity} name={"Speed"} xaxis={"Distance"} yaxis={"MPH"} isLoaded={isLoaded} /> */}
+                     {/* </div> */}
                 </div>
             </div>
         </>

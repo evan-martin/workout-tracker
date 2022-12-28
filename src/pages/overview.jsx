@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import Header from '../components/header';
-import LineChart from '../components/line-chart';
 import Button from '@mui/material/Button';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import ToggleButton from '@mui/material/ToggleButton';
+
 
 import './page-styles/overview.scss'
+import OverviewCharts from '../components/overview-charts';
 
 const Overview = ({ userData, formattedMonths, monthlyDistance, monthlyTime, monthlyElevation, formattedWeeks, weeklyDistance, weeklyTime, weeklyElevation }) => {
 
@@ -16,7 +19,7 @@ const Overview = ({ userData, formattedMonths, monthlyDistance, monthlyTime, mon
             <div className='overview-container'>
                 <div className='overview-card'>
                     <div className='title'>
-                        <p>{userData.name}</p>
+                        <h3>{userData.name}</h3>
                     </div>
                     <div className='user-data-container'>
                         <div className='user-data'>
@@ -40,16 +43,49 @@ const Overview = ({ userData, formattedMonths, monthlyDistance, monthlyTime, mon
                         </div>
 
                         <div className='chart'>
-                            <LineChart category={formattedMonths} data={monthlyData} name={"Monthly Distance"} xaxis={"Month"} yaxis={"Feet"} isLoaded={true} />
-                            <Button onClick={() => { setMonthlyData(monthlyDistance) }} variant="contained">Distance</Button>
+                            <OverviewCharts />
+                            {/* <ActivityDetailCharts category={formattedMonths} data={monthlyData} name={"Monthly Distance"} xaxis={"Month"} yaxis={"Feet"} isLoaded={true} /> */}
+                            <ToggleButtonGroup
+                                value={monthlyData}
+                                exclusive
+                                // onChange={handleAlignment}
+                            >
+                                <ToggleButton value="monthlyDistance" >
+                                    Distance
+                                </ToggleButton>
+                                <ToggleButton value="monthlyTime">
+                                    Time
+                                </ToggleButton>
+                                <ToggleButton value="monthlyElevation" >
+                                    Elevation
+                                </ToggleButton>
+                            </ToggleButtonGroup>
+                            {/* <Button onClick={() => { setMonthlyData(monthlyDistance) }} variant="contained">Distance</Button>
                             <Button onClick={() => { setMonthlyData(monthlyTime) }} variant="contained">Time</Button>
-                            <Button onClick={() => { setMonthlyData(monthlyElevation) }} variant="contained">Elevation</Button>
+                            <Button onClick={() => { setMonthlyData(monthlyElevation) }} variant="contained">Elevation</Button> */}
                             {/* </div>
                 <div className='chart'> */}
-                            <LineChart category={formattedWeeks} data={weeklyData} name={"Weekly Time"} xaxis={"Week"} yaxis={"Feet"} isLoaded={true} />
-                            <button className='outlined-button' onClick={() => { setWeeklyData(weeklyDistance) }}>Distance</button>
+                            {/* <ActivityDetailCharts category={formattedWeeks} data={weeklyData} name={"Weekly Time"} xaxis={"Week"} yaxis={"Feet"} isLoaded={true} /> */}
+                            
+                            <ToggleButtonGroup
+                                
+                                value={weeklyData}
+                                exclusive
+                                // onChange={handleAlignment}
+                            >
+                                <ToggleButton  color="primary" value="left" aria-label="left aligned">
+                                    Distance
+                                </ToggleButton>
+                                <ToggleButton value="center" aria-label="centered">
+                                    Time
+                                </ToggleButton>
+                                <ToggleButton value="right" aria-label="right aligned">
+                                    Elevation
+                                </ToggleButton>
+                            </ToggleButtonGroup>
+                            {/* <button className='outlined-button' onClick={() => { setWeeklyData(weeklyDistance) }}>Distance</button>
                             <button className='outlined-button' onClick={() => { setWeeklyData(weeklyTime) }}>Time</button>
-                            <button className='outlined-button' onClick={() => { setWeeklyData(weeklyElevation) }}>Elevation</button>
+                            <button className='outlined-button' onClick={() => { setWeeklyData(weeklyElevation) }}>Elevation</button> */}
                         </div>
                     </div>
                 </div>
