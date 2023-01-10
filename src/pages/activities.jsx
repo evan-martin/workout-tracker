@@ -11,7 +11,6 @@ const Activites = ({ data, setActivity, currentPage, setCurrentPage }) => {
     let PageSize = 9;
 
     const navigate = useNavigate();
-    // const [currentPage, setCurrentPage] = useState(1);
     const [searchTerm, setSearchTerm] = useState("");
 
     const filteredData = data.filter(data =>

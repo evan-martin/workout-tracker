@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Route, Routes } from 'react-router';
 import { useStrava } from './hooks/useStrava';
 import { useUserData } from './hooks/useUserData';
+import { useLocalStorage } from './hooks/useLocalStorage';
 import Splash from './pages/splash';
 import Activites from './pages/activities';
 import ActivityDetail from './pages/activity-detail';
@@ -16,7 +17,7 @@ function App() {
 
   const { userData } = useUserData();
 
-  const [activity, setActivity] = useState([]);
+  const [activity, setActivity] = useLocalStorage([]);
   const [currentPage, setCurrentPage] = useState(1);
 
   if (!isLoaded) {
