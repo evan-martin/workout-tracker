@@ -9,7 +9,7 @@ const Header = () => {
 
     return (
         <div className='header-container'>
-            <div className='logo-container'>
+            <div className='logo-container' onClick={() => navigate('/activities')}>
                 <img src={Logo} alt='logo' className='logo' />
                 <div className='logo-title'>sendIt</div>
             </div>

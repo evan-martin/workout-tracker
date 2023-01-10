@@ -13,6 +13,8 @@ const ActivityDetail = ({ activity }) => {
     const navigate = useNavigate();
     const { streamData, isLoaded } = useStream(activity.id)
 
+    console.log(streamData)
+
     return (
         <>
             <Header />
@@ -27,12 +29,8 @@ const ActivityDetail = ({ activity }) => {
                         {activity.map.summary_polyline !== "" &&
                             <Map activity={activity} />}
                     </div>
-                    <ActivityDetailCharts streamData = {streamData} isLoaded={isLoaded} />
-                    {/* <div className='chart-container'>
-                        <LineChart category={distance} data={elevation} name={"Elevation"} xaxis={"Distance"} yaxis={"Feet"} isLoaded={isLoaded} />
-                        <LineChart category={distance} data={heartrate} name={"Heartrate"} xaxis={"Distance"} yaxis={"BPM"} isLoaded={isLoaded} />
-                        <LineChart category={distance} data={velocity} name={"Speed"} xaxis={"Distance"} yaxis={"MPH"} isLoaded={isLoaded} /> */}
-                     {/* </div> */}
+                    {streamData.length !==0 &&
+                        <ActivityDetailCharts streamData={streamData} isLoaded={isLoaded} />}
                 </div>
             </div>
         </>

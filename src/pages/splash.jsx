@@ -11,8 +11,8 @@ const Splash = () => {
         <div className='splash-container'>
             <img src={Logo} alt='logo' className='logo' />
             <div className='title-container' >
-                <div className='title'>SendIt</div>
-                <div className='sub-title'>A workout tracker and data visualizer</div>
+                <div className='title'>sendIt</div>
+                <div className='sub-title'>A cycling workout tracker and data visualizer</div>
                 <button className='outlined-button' onClick={() => navigate('/activities')} >Enter</button>
             </div>
 
