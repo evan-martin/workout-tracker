@@ -12,14 +12,11 @@ import {
 
 const ActivityDetailCharts = ({ streamData, isLoaded }) => {
 
-
-
     if (!isLoaded) {
         return <>LOADING</>;
     } else {
         return (
             <div>
-                {console.log(streamData)}
                 <h3>Elevation</h3>
                 <AreaChart
                     width={600}

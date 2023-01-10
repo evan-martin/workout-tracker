@@ -7,18 +7,8 @@ function useStrava() {
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [data, setData] = useState([]);
-
-    const [formattedMonths, setFormattedMonths] = useState([])
-
-    const [monthlyDistance, setMonthlyDistance] = useState([])
-    const [monthlyTime, setMonthlyTime] = useState([])
-    const [monthlyElevation, setMonthlyElevation] = useState([])
-
-    const [formattedWeeks, setFormattedWeeks] = useState([])
-    const [weeklyDistance, setWeeklyDistance] = useState([])
-    const [weeklyTime, setWeeklyTime] = useState([])
-
-    const [weeklyElevation, setWeeklyElevation] = useState([])
+    const [monthlyData, setMonthlyData] = useState([])
+    const [weeklyData, setWeeklyData] = useState([])
 
     //connection variables
     const clientID = process.env.REACT_APP_CLIENT_ID;
@@ -71,11 +61,7 @@ function useStrava() {
         const dataByWeek = {};
         const currentWeek = new Date()
         let count = currentWeek.getWeek()
-        let formattedMonth = []
         let formattedWeek =[]
-        let distance = [];
-        let time =[];
-        let elevation =[];
 
         //constructs weeks object
         for (let i = 0; i < 52; i++) {
@@ -100,41 +86,39 @@ function useStrava() {
             }
         }
 
+        let arr = [];
+
         Object.keys(dataByMonth).forEach(function (month) {
             let tempDist = dataByMonth[month].Distance.reduce((a, b) => a + b, 0)
             let tempTime = dataByMonth[month].Time.reduce((a, b) => a + b, 0)
             let tempEle = dataByMonth[month].Elevation.reduce((a, b) => a + b, 0)
 
-            formattedMonth.push({ "label": month })
-            distance.push({ "value": tempDist / 1609 })
-            time.push({ "value": tempTime / 60/60 })
-            elevation.push({ "value": tempEle * 3.281 })
-
+            arr.push({
+                month: month,
+                distance: Math.round(tempDist /1609),
+                time: Math.round(tempTime/60/60),
+                elevation: Math.round(tempEle * 3.281)
+            })
         });
 
-        setFormattedMonths(formattedMonth)
-        setMonthlyDistance(distance)
-        setMonthlyTime(time)
-        setMonthlyElevation(elevation)
+        setMonthlyData(arr)
 
-        let weekDistance=[];
-        let weekTime=[];
-        let weekElevation=[];
+        let arr2 = []
 
         Object.keys(dataByWeek).forEach(function (week) {
             let tempDist = dataByWeek[week].Distance.reduce((a, b) => a + b, 0)
             let tempTime = dataByWeek[week].Time.reduce((a, b) => a + b, 0)
             let tempEle = dataByWeek[week].Elevation.reduce((a, b) => a + b, 0)
-            formattedWeek.push({ "label": week })
-            weekDistance.push({ "value": tempDist / 1609 })
-            weekTime.push({ "value": tempTime / 60/60 })
-            weekElevation.push({ "value": tempEle * 3.281 })
+            arr2.push({
+                week: week,
+                distance: Math.round(tempDist /1609),
+                time: Math.round(tempTime/60/60),
+                elevation: Math.round(tempEle * 3.281)
+            })
         });
-        
-        setFormattedWeeks(formattedWeek)
-        setWeeklyDistance(weekDistance)
-        setWeeklyTime(weekTime)
-        setWeeklyElevation(weekElevation)
+
+        setWeeklyData(arr2)
+
     }
 
 
@@ -149,14 +133,8 @@ function useStrava() {
         isLoaded,
         error,
         data,
-        formattedMonths,
-        monthlyDistance,
-        monthlyTime,
-        monthlyElevation,
-        formattedWeeks,
-        weeklyDistance,
-        weeklyTime,
-        weeklyElevation
+        monthlyData,
+        weeklyData
     }
 }
 

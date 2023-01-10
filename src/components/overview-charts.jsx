@@ -1,4 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
+import Button from '@mui/material/Button';
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
+import ToggleButton from '@mui/material/ToggleButton';
 import {
     AreaChart,
     Area,
@@ -8,22 +11,21 @@ import {
     Tooltip,
     LineChart,
     Line,
+    BarChart,
+    Bar
 } from "recharts";
 
-const OverviewCharts = ({ streamData, isLoaded }) => {
+const OverviewCharts = ({ monthlyData, weeklyData}) => {
 
+    const [data, setData] = useState("distance")
 
-
-    if (!isLoaded) {
-        return <>LOADING</>;
-    } else {
         return (
             <div>
-                <h3>Elevation</h3>
-                <AreaChart
-                    width={600}
-                    height={400}
-                    data={streamData}
+                <h3>Monthly</h3>
+                <BarChart
+                    width={500}
+                    height={250}
+                    data={monthlyData}
                     margin={{
                         top: 10,
                         right: 30,
@@ -31,24 +33,21 @@ const OverviewCharts = ({ streamData, isLoaded }) => {
                         bottom: 0
                     }}
                 >
-                    <XAxis dataKey="distance" label="Miles" type="number" domain={["dataMin", "dataMax"]} />
+                    <XAxis dataKey="month" />
                     <YAxis domain={["dataMin", "dataMax"]} type="number" scale="linear" />
                     <Tooltip />
-                    <Area
-                        connectNulls
-                        type="basis"
-                        dataKey="elevation"
-                        stroke="none"
-                        fill="#666666"
-                        strokeWidth={2}
-                        dot={false}
+                    <Bar             
+                        dataKey={data}
+                        fill="#21299e"
                     />
-                </AreaChart>
-                <h3>Heartrate vs Elevation</h3>
-                <AreaChart
-                    width={600}
-                    height={400}
-                    data={streamData}
+                </BarChart>
+               
+
+                <h3>Weekly</h3>
+                <BarChart
+                    width={500}
+                    height={250}
+                    data={weeklyData}
                     margin={{
                         top: 10,
                         right: 30,
@@ -56,34 +55,29 @@ const OverviewCharts = ({ streamData, isLoaded }) => {
                         bottom: 0
                     }}
                 >
-                    <XAxis dataKey="distance" label="Miles" type="number" domain={["dataMin", "dataMax"]} />
-                    <YAxis yAxisId="left" label="Ft" domain={["dataMin", "dataMax"]} type="number" scale="linear" />
-                    <YAxis yAxisId="right" label="BPM" orientation="right" domain={["dataMin", "dataMax"]} type="number" scale="linear" />
+                    <XAxis dataKey="week" />
+                    <YAxis domain={["dataMin", "dataMax"]} type="number" scale="linear" />
                     <Tooltip />
-                    <Area
-                        connectNulls
-                        type="basis"
-                        dataKey="elevation"
-                        stroke="none"
-                        fill="#666666"
-                        // fillOpacity="1"
-                        yAxisId="left"
-                        strokeWidth={2}
+                    <Bar             
+                        dataKey={data}
+                        fill="#21299e"
                     />
-                    <Area
-                        connectNulls
-                        type="basis"
-                        dataKey="heartrate"
-                        stroke="none"
-                        fill="#9e2121"
-                        fillOpacity=".7"
-                        yAxisId="right"
-                        strokeWidth={2}
-                    />
-                </AreaChart>
+                </BarChart>
+                <ToggleButtonGroup
+                            >
+                                <ToggleButton value="monthlyDistance" onClick={()=>setData("distance")}>
+                                    Distance
+                                </ToggleButton>
+                                <ToggleButton value="monthlyTime" onClick={()=>setData("time")}>
+                                    Time
+                                </ToggleButton>
+                                <ToggleButton value="monthlyElevation" onClick={()=>setData("elevation")} >
+                                    Elevation
+                                </ToggleButton>
+                            </ToggleButtonGroup>
             </div>
         );
     }
-}
+
 
 export default OverviewCharts;

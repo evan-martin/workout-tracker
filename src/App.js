@@ -11,9 +11,7 @@ import './App.css';
 function App() {
 
   const {
-    error, isLoaded, data,
-    formattedMonths, monthlyDistance, monthlyTime, monthlyElevation,
-    formattedWeeks, weeklyDistance, weeklyTime, weeklyElevation
+    error, isLoaded, data, monthlyData, weeklyData
   } = useStrava();
 
   const { userData } = useUserData();
@@ -35,8 +33,8 @@ function App() {
           <Route path="/overview" element={
             <Overview
               userData={userData}
-              formattedMonths={formattedMonths} monthlyDistance={monthlyDistance} monthlyTime={monthlyTime} monthlyElevation={monthlyElevation}
-              formattedWeeks={formattedWeeks} weeklyDistance={weeklyDistance} weeklyTime={weeklyTime} weeklyElevation={weeklyElevation}
+              monthlyData={monthlyData}
+              weeklyData={weeklyData}
             />}
           />
         </Routes>
