@@ -13,8 +13,6 @@ const ActivityDetail = ({ activity }) => {
     const navigate = useNavigate();
     const { streamData, isLoaded } = useStream(activity.id)
 
-    console.log(streamData)
-
     return (
         <>
             <Header />

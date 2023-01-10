@@ -17,6 +17,7 @@ function App() {
   const { userData } = useUserData();
 
   const [activity, setActivity] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
 
   if (!isLoaded) {
     return <>LOADING</>
@@ -28,7 +29,7 @@ function App() {
       <div className='App'>
         <Routes>
           <Route path='/' element={<Splash />} />
-          <Route path='/activities' element={<Activites data={data} setActivity={setActivity} />} />
+          <Route path='/activities' element={<Activites data={data} setActivity={setActivity} currentPage={currentPage} setCurrentPage={setCurrentPage} />} />
           <Route path="/activities/:id" element={<ActivityDetail activity={activity} />} />
           <Route path="/overview" element={
             <Overview

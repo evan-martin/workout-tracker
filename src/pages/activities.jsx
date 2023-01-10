@@ -7,15 +7,15 @@ import ActivityCard from '../components/activity-card';
 import './page-styles/activities.scss'
 import { SearchSharp } from '@mui/icons-material';
 
-const Activites = ({ data, setActivity }) => {
+const Activites = ({ data, setActivity, currentPage, setCurrentPage }) => {
     let PageSize = 9;
 
     const navigate = useNavigate();
-    const [currentPage, setCurrentPage] = useState(1);
+    // const [currentPage, setCurrentPage] = useState(1);
     const [searchTerm, setSearchTerm] = useState("");
 
     const filteredData = data.filter(data =>
-        data.name.toLowerCase().includes(searchTerm)
+        data.name.toLowerCase().includes(searchTerm),
     );
 
     const currentPageData = useMemo(() => {
@@ -26,6 +26,7 @@ const Activites = ({ data, setActivity }) => {
 
     const handleChange = e => {
         setSearchTerm(e.target.value);
+        setCurrentPage(1)
     };
 
     const handleClick = (activity) => {
