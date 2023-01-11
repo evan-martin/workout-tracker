@@ -1,19 +1,17 @@
 import React from 'react';
+import Loading from './loading';
 import {
     AreaChart,
     Area,
     XAxis,
     YAxis,
-    CartesianGrid,
     Tooltip,
-    LineChart,
-    Line,
 } from "recharts";
 
 const ActivityDetailCharts = ({ streamData, isLoaded }) => {
 
     if (!isLoaded) {
-        return <>LOADING</>;
+        return <Loading />;
     } else {
         return (
             <div>

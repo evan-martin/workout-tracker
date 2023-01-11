@@ -7,6 +7,7 @@ import Splash from './pages/splash';
 import Activites from './pages/activities';
 import ActivityDetail from './pages/activity-detail';
 import Overview from './pages/overview';
+import Loading from './components/loading';
 import './App.css';
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1);
 
   if (!isLoaded) {
-    return <>LOADING</>
+    return <Loading />
   } else if (error) {
     return <>{error}</>
   } else {
