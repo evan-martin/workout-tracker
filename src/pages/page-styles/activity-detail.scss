@@ -2,15 +2,18 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    flex-wrap: wrap;
 }
 
 .activity-detail-card {
-    width: 1200px;
+    max-width: 1200px;
     min-height: 100vh;
     background-color: rgb(245, 245, 245);
     border-radius: .25rem;
     margin-top: 2rem;
     margin-bottom: 2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
 
     .title {
         display: flex;
@@ -33,12 +36,5 @@
         height: 400px;
         margin: 1rem;
         border: 1px solid rgba(188, 188, 188, 0.746);
-    }
-
-    .chart-container {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: center;
     }
 }

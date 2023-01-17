@@ -27,8 +27,10 @@ const ActivityDetail = ({ activity }) => {
                         {activity.map.summary_polyline !== "" &&
                             <Map activity={activity} />}
                     </div>
-                    {streamData.length !==0 &&
-                        <ActivityDetailCharts streamData={streamData} isLoaded={isLoaded} />}
+                    <div >
+                        {streamData.length !==0 &&
+                       <ActivityDetailCharts streamData={streamData} isLoaded={isLoaded} />}
+                    </div>
                 </div>
             </div>
         </>
