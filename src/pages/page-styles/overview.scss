@@ -23,7 +23,6 @@
         border-bottom: 1px solid rgba(188, 188, 188, 0.746);
     }
 
-
     .user-data-container {
         padding: 2rem;
         display: flex;
@@ -41,26 +40,9 @@
             }
         }
 
-
         .chart {
-            width: fit-content;
+            width: fit-content; 
             margin-bottom: 2rem;
-
-            .outlined-button {
-                background-color: rgb(64, 54, 172);
-                border: 2px solid rgb(64, 54, 172);
-                color: white;
-                font-weight: 700;
-                padding: 10px 20px;
-                text-align: center;
-                text-decoration: none;
-                display: inline-block;
-                margin: 4px 2px;
-                cursor: pointer;
-                border-radius: 32px;
-                margin: 10px;
-                box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
-            }
         }
     }
 }

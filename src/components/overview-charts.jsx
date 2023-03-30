@@ -64,14 +64,16 @@ const OverviewCharts = ({ monthlyData, weeklyData}) => {
                     />
                 </BarChart>
                 <ToggleButtonGroup
+                exclusive
+                value={data}
                             >
-                                <ToggleButton value="monthlyDistance" onClick={()=>setData("distance")}>
+                                <ToggleButton value="distance" onClick={()=>setData("distance")}>
                                     Distance
                                 </ToggleButton>
-                                <ToggleButton value="monthlyTime" onClick={()=>setData("time")}>
+                                <ToggleButton value="time" onClick={()=>setData("time")}>
                                     Time
                                 </ToggleButton>
-                                <ToggleButton value="monthlyElevation" onClick={()=>setData("elevation")} >
+                                <ToggleButton value="elevation" onClick={()=>setData("elevation")} >
                                     Elevation
                                 </ToggleButton>
                             </ToggleButtonGroup>
