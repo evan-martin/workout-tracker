@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
-import mapboxgl from 'mapbox-gl';
+// eslint-disable-next-line import/no-webpack-loader-syntax
+import mapboxgl from '!mapbox-gl';
 import polyline from '@mapbox/polyline';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 const Map = ({ activity }) => {
 
-    mapboxgl.accessToken = process.env.REACT_APP_MAP_TOKEN
+    mapboxgl.accessToken = process.env.REACT_APP_ACCESS_TOKEN
     const coordinates = polyline.decode(activity.map.summary_polyline);
 
     let geoJSON = {
