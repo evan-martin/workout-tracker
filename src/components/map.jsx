@@ -5,7 +5,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 
 const Map = ({ activity }) => {
 
-    mapboxgl.accessToken = 'pk.eyJ1IjoiZXZhbm02ODkiLCJhIjoiY2xiM3UyczNsMDh1ejN2cWtjZWliaWtpciJ9.BJGgpdI16Yl8pU8CFx0IXw';
+    mapboxgl.accessToken = process.env.REACT_APP_MAP_TOKEN
     const coordinates = polyline.decode(activity.map.summary_polyline);
 
     let geoJSON = {
